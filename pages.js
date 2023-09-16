@@ -1,7 +1,7 @@
-//this is the main page.js
 'use client'
 
 import axios from 'axios';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 
 
@@ -18,7 +18,7 @@ const Page = () => {
     return(
       <ul>
         {data.map((e) => (
-          <li>{e.name} --- <a href={`/${e.id}`}>explore</a></li>
+          <li>{e.name} --- <Link href={`/${e.id}`}>show more</Link></li>
 
         ))}
       </ul>
@@ -42,5 +42,4 @@ const Page = () => {
 }
 
 export default Page
-
 
