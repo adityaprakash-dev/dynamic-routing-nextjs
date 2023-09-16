@@ -1,11 +1,35 @@
-import React from 'react'
+'use client'
 
-//params is a special type of props, that is automatcally passed by next for dynamic routing
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+
+
 const page = ({params}) => {
   const {id} = params;
-  return (
-    <div>Hello {id}</div>
+  const [user, setuser] = useState(null);
+
+  const getData = async () => {
+    const {data} = await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`);
+    setuser(data)
+  }
+
+  useEffect(() => {
+    getData();
+  }, [])
+  
+  return(
+    <>
+    {user ? 
+    
+    <>
+    <p>{user.name}</p> 
+    <p>Email: {user.email}</p>
+    </>
+    
+    : "loading"}
+    </>
   )
+  
 }
 
 export default page
